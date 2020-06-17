@@ -1,20 +1,17 @@
-import { ADD_USER, DELETE_USER } from "../actions/actionTypes";
+import { ADD_USER, DELETE_USER, FETCH_USERS } from "../actions/actionTypes";
 
 const initialState = {
-  users: [
-    {
-      name: "Aaron",
-      id: 1,
-    },
-    {
-      name: "Declan",
-      id: 2,
-    },
-  ],
+  users: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case FETCH_USERS:
+      return {
+        ...state,
+        users: [...action.payload],
+      };
+
     case ADD_USER:
       return {
         ...state,
@@ -23,9 +20,7 @@ export default function (state = initialState, action) {
     case DELETE_USER:
       // create a new array based off of the existing state
       let filteredArray = state.users.filter((user) => {
-        if (user.id != action.payload) {
-          return user;
-        }
+        return user.id !== action.payload ? user : null;
       });
       return {
         ...state,

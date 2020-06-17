@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteUser } from "./actions/userActions";
+import { deleteUser, fetchUsers } from "./actions/userActions";
 
 class Users extends Component {
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
+
   render() {
     let userJsx =
       this.props.users && this.props.users.length > 0 ? (
         this.props.users.map((user) => (
           <div className="card col-12 col-md-6 p-2" key={user.id}>
-            <h4>{user.name}</h4>
-            <button
-              className="btn btn-danger"
-              onClick={() => this.props.deleteUser(user.id)}
-            >
+            <h4>{user.email}</h4>
+            <button className="btn btn-danger" onClick={() => this.props.deleteUser(user.id)}>
               Delete
             </button>
           </div>
@@ -46,4 +47,4 @@ const mapStateToProps = (state) => ({
 
 // mapDispatchToProps making the actions dispatchable to the reducer  - be able to run a function to change the application level state
 
-export default connect(mapStateToProps, { deleteUser })(Users);
+export default connect(mapStateToProps, { deleteUser, fetchUsers })(Users);

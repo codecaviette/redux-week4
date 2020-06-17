@@ -21,7 +21,7 @@ export class AddUser extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.addUser({
-      name: this.state.userName,
+      email: this.state.userName,
       id: this.state.id,
     });
 
