@@ -1,3 +1,11 @@
+This snippet includes React animations with React-spring, Asynchronous JS, and HTTP requests with Axios API to modify Redux state.
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
